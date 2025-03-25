@@ -11,6 +11,7 @@ import {
   Order,
   Verify,
   WishListPage,
+  ResetPassword,
 } from "./pages";
 import { ForgotPassword, Layout } from "./components";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -33,6 +34,7 @@ const App = () => {
             <Route path="/place-order" element={<PlaceOrder />} />
             <Route path="/orders" element={<Order />} />
             <Route element={<Verify />} path="/verify" />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
           </Routes>
         </div>
       </Layout>

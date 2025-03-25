@@ -46,35 +46,34 @@ export const forgotPassword = async (req, res) => {
       debug: true, // Enable debugging
       logger: true, // Log to console
     });
-    console.log(process.env.EMAIL_USER);
-    console.log(process.env.EMAIL_APP_PASSWORD);
 
     // Create reset URL
     const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
 
-    // Send email
     const mailOptions = {
-      from: `"ZARAA Support" <${process.env.EMAIL_USER}>`,
+      from: process.env.EMAIL_USER,
       to: email,
       subject: "Password Reset Request - ZARAA",
       html: `
-        <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h2 style="color: #333;">Password Reset Request</h2>
-          <p>Hello,</p>
-          <p>You requested a password reset for your ZARAA account.</p>
-          <p>Please click the button below to reset your password:</p>
-          <a href="${resetUrl}" 
-             style="display: inline-block; padding: 10px 20px; margin: 20px 0; 
-                    background-color: #000; color: #fff; text-decoration: none; 
-                    border-radius: 5px;">
-            Reset Password
-          </a>
-          <p style="color: #666; font-size: 14px;">
-            This link will expire in 1 hour. If you didn't request this reset, 
-            please ignore this email.
-          </p>
-        </div>
-      `,
+    <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+      <h2 style="color: #333;">Password Reset Request</h2>
+      <p>Hello,</p>
+      <p>You requested a password reset for your ZARAA account.</p>
+      <p>Please click the button below to reset your password:</p>
+      <a href="${resetUrl}" 
+         style="display: inline-block; padding: 10px 20px; margin: 20px 0; 
+                background-color: #000; color: #fff; text-decoration: none; 
+                border-radius: 5px;">
+        Reset Password
+      </a>
+      <p>Or copy and paste this link in your browser:</p>
+      <p>${resetUrl}</p>
+      <p style="color: #666; font-size: 14px;">
+        This link will expire in 1 hour. If you didn't request this reset, 
+        please ignore this email.
+      </p>
+    </div>
+  `,
     };
 
     await transporter.sendMail(mailOptions);

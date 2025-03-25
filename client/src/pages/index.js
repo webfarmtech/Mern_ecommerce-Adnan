@@ -9,6 +9,7 @@ import Order from "./Order";
 import PlaceOrder from "./PlaceOrder";
 import Verify from "./Verify";
 import WishListPage from "./WishListPage";
+import ResetPassword from "./ResetPassword";
 export {
   About,
   Cart,
@@ -21,4 +22,5 @@ export {
   PlaceOrder,
   Verify,
   WishListPage,
+  ResetPassword,
 };
