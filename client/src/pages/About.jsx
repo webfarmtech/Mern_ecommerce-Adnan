@@ -33,7 +33,7 @@ const About = () => {
         <Title text2="WHY CHOOSE US" />
       </div>
 
-      <div className="flex flex-col md:flex-row text-sm mb-20">
+      <div className="flex flex-col md:flex-row text-lg mb-20">
         {[
           aboutContent.qualityAssurance,
           aboutContent.convenience,

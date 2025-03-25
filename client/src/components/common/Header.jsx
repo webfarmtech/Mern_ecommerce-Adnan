@@ -31,7 +31,7 @@ const Header = () => {
       <div className="flex items-center ml-2 gap-3">
         <div
           onClick={goToAdminPanel}
-          className="text-sm bg-black text-white p-1 rounded-md hover:text-black  hover:bg-gray-300 cursor-pointer lg:text-lg"
+          className="text-xs bg-black text-white p-2 rounded-md hover:text-black  hover:bg-gray-300 cursor-pointer lg:text-sm"
         >
           Admin Panel
         </div>

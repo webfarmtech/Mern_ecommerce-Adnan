@@ -5,6 +5,7 @@ import { InputField, ToggleText } from "../components";
 import { ShopContext } from "../context/ShopContext";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 // import { GoogleLogin } from "@react-oauth/google";
 // import { jwtDecode } from "jwt-decode";
 
@@ -125,11 +126,20 @@ const Login = () => {
         value={password}
       />
 
-      <ToggleText
-        currenState={currenState}
-        setCurrentState={setCurrentState}
-        loginContent={loginContent}
-      />
+      <div className="flex items-center justify-between w-full">
+        {" "}
+        <Link
+          to="/forgot-password"
+          className="flex no-wrap text-sm text-gray-600 hover:text-blue-800 underline"
+        >
+          Forgot Password?
+        </Link>
+        <ToggleText
+          currenState={currenState}
+          setCurrentState={setCurrentState}
+          loginContent={loginContent}
+        />
+      </div>
 
       <div className="w-full flex flex-col items-center gap-4">
         <button className="w-full bg-black text-white font-light px-8 py-2 mt-4">

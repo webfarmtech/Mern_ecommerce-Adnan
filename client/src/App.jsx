@@ -12,16 +12,17 @@ import {
   Verify,
   WishListPage,
 } from "./pages";
-import { Layout } from "./components";
+import { ForgotPassword, Layout } from "./components";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const App = () => {
   return (
-    <GoogleOAuthProvider clientId="67793310868-39eqoijbjrjkeuus5809rer7gol0ej3i.apps.googleusercontent.com">
-      <div className="p-1">
-        <Layout>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      <Layout>
+        <div className="px-3">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/collection" element={<Collection />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
@@ -33,8 +34,8 @@ const App = () => {
             <Route path="/orders" element={<Order />} />
             <Route element={<Verify />} path="/verify" />
           </Routes>
-        </Layout>
-      </div>
+        </div>
+      </Layout>
     </GoogleOAuthProvider>
   );
 };

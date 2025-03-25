@@ -26,6 +26,7 @@ import InputField from "./InputField";
 import ToggleText from "./ToggleText";
 import FeatureSection from "./FeatureSection";
 import WishList from "./WishList";
+import ForgotPassword from "./ForgotPassword";
 
 export {
   Header,
@@ -59,4 +60,5 @@ export {
   ToggleText,
   FeatureSection,
   WishList,
+  ForgotPassword,
 };

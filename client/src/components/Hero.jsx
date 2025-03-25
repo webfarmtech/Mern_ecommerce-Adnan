@@ -18,7 +18,7 @@ const Hero = () => {
   }, [banner]);
 
   return (
-    <div className="flex flex-col sm:flex-row border border-gray-400F rounded-lg">
+    <div className="mt-2 flex flex-col sm:flex-row border border-gray-400F rounded-lg">
       <div className="relative w-full h-[400px] overflow-hidden rounded-lg">
         {banner && banner.length > 0
           ? banner.map((slide, index) => (

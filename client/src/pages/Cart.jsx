@@ -6,9 +6,18 @@ import { assets } from "../assets";
 import { toast } from "react-toastify";
 
 const Cart = () => {
-  const { products, cartItems, currency, updateQuantity, navigate } =
+  const { token, products, cartItems, currency, updateQuantity, navigate } =
     useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
+
+  const handleCheckout = () => {
+    if (!token) {
+      toast.error("Please login to proceed with checkout");
+      navigate("/login");
+      return;
+    }
+    navigate("/place-order");
+  };
 
   useEffect(() => {
     if (products.length > 0) {
@@ -111,10 +120,12 @@ const Cart = () => {
               </button>
             ) : (
               <button
-                onClick={() => navigate("/place-order")}
-                className="text-white bg-black text-sm my-8 px-8 py-3"
+                onClick={handleCheckout}
+                className={`text-white bg-black text-sm my-8 px-8 py-3 ${
+                  !token ? "opacity-50" : ""
+                }`}
               >
-                PROCEED TO CHECKOUT
+                {!token ? "LOGIN TO CHECKOUT" : "PROCEED TO CHECKOUT"}
               </button>
             )}
           </div>
