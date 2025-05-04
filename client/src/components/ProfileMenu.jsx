@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { assets } from "../assets";
-import { Avatar, AvatarFallback } from "./ui/avatar";
 import { profileMenuText } from "../constant";
 import { ShopContext } from "../context/ShopContext";
 import { useContext } from "react";
@@ -25,34 +24,34 @@ const ProfileMenu = () => {
     navigate("/login"); // Redirect user after logout
   };
 
-  // const handleGoogleLogout = async () => {
-  //   try {
-  //     // First handle Google logout if email exists
-  //     const email = localStorage.getItem("email");
-  //     if (email) {
-  //       // Revoke Google access
-  //       await new Promise((resolve) => {
-  //         if (window.google?.accounts) {
-  //           window.google.accounts.id.revoke(email, resolve);
-  //           window.google.accounts.id.disableAutoSelect();
-  //         }
-  //         resolve();
-  //       });
-  //     }
+  const handleGoogleLogout = async () => {
+    try {
+      // First handle Google logout if email exists
+      const email = localStorage.getItem("email");
+      if (email) {
+        // Revoke Google access
+        await new Promise((resolve) => {
+          if (window.google?.accounts) {
+            window.google.accounts.id.revoke(email, resolve);
+            window.google.accounts.id.disableAutoSelect();
+          }
+          resolve();
+        });
+      }
 
-  //     // Clear all auth data
-  //     googleLogout();
-  //     localStorage.clear(); // Clear all localStorage
-  //     setToken(null);
-  //     cartItems({});
+      // Clear all auth data
+      googleLogout();
+      localStorage.clear(); // Clear all localStorage
+      setToken(null);
+      cartItems({});
 
-  //     toast.success("Logged out successfully!");
-  //     navigate("/login");
-  //   } catch (error) {
-  //     console.error("Logout error:", error);
-  //     toast.error("Error during logout");
-  //   }
-  // };
+      toast.success("Logged out successfully!");
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout error:", error);
+      toast.error("Error during logout");
+    }
+  };
 
   return (
     <div className="group relative">

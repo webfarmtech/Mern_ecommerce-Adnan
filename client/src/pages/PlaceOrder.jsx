@@ -19,7 +19,6 @@ const PlaceOrder = () => {
     products,
   } = useContext(ShopContext);
   const [formData, setFormData] = useState({
-    name: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -86,22 +85,6 @@ const PlaceOrder = () => {
       receipt: order.receipt,
       handler: async (response) => {
         console.log(response);
-        // try {
-        //   const { data } = await axios.post(
-        //     `${backendurl}/api/order/verifyRazorpay`,
-        //     response,
-        //     { headers: { Authorization: `Bearer ${token}` } }
-        //   );
-        //   console.log(response);
-
-        //   if (data.success) {
-        //     navigate("/orders");
-        //     setCartItems({});
-        //   }
-        // } catch (error) {
-        //   console.log(error);
-        //   toast.error(error.message);
-        // }
       },
     };
     const rzp = new window.Razorpay(option);
@@ -208,15 +191,7 @@ const PlaceOrder = () => {
         <div className="text-xl sm:text-2xl my-3">
           <Title text2={`DELIVERY DETAILS`} />
         </div>
-        <input
-          required
-          placeholder="Enter Your Full Name"
-          type="text"
-          onChange={onChangeHandler}
-          value={formData.name}
-          name={"name"}
-          className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
-        />
+
         <div className="flex gap-3">
           <input
             required

@@ -6,9 +6,8 @@ import { ShopContext } from "../context/ShopContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-
-// import { GoogleLogin } from "@react-oauth/google";
-// import { jwtDecode } from "jwt-decode";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
   const [currenState, setCurrentState] = useState("Login");
@@ -17,37 +16,37 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
-  // const handleGoogleSuccess = async (credentialResponse) => {
-  //   try {
-  //     const decoded = jwtDecode(credentialResponse.credential);
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      const decoded = jwtDecode(credentialResponse.credential);
 
-  //     // Store email in localStorage for logout
-  //     localStorage.setItem("email", decoded.email);
+      // Store email in localStorage for logout
+      localStorage.setItem("email", decoded.email);
 
-  //     // Send user data to backend
-  //     const response = await axios.post(
-  //       `${backendurl}/api/google/google-auth`,
-  //       {
-  //         email: decoded.email,
-  //         name: decoded.name,
-  //         googleId: decoded.sub,
-  //       }
-  //     );
+      // Send user data to backend
+      const response = await axios.post(
+        `${backendurl}/api/google/google-auth`,
+        {
+          email: decoded.email,
+          name: decoded.name,
+          googleId: decoded.sub,
+        }
+      );
 
-  //     if (response.data.success) {
-  //       setToken(response.data.token);
-  //       localStorage.setItem("token", response.data.token);
-  //       toast.success("Successfully logged in with Google");
-  //     }
-  //   } catch (error) {
-  //     console.error("Google login error:", error);
-  //     toast.error("Failed to login with Google");
-  //   }
-  // };
+      if (response.data.success) {
+        setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        toast.success("Successfully logged in with Google");
+      }
+    } catch (error) {
+      console.error("Google login error:", error);
+      toast.error("Failed to login with Google");
+    }
+  };
 
-  // const handleGoogleError = () => {
-  //   toast.error("Google login failed");
-  // };
+  const handleGoogleError = () => {
+    toast.error("Google login failed");
+  };
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -149,7 +148,7 @@ const Login = () => {
             : loginContent.buttonText.signUp}
         </button>
 
-        {/* <div className="relative w-full text-center my-4">
+        <div className="relative w-full text-center my-4">
           <hr className="border-gray-300" />
           <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-2 text-gray-500">
             OR
@@ -169,7 +168,7 @@ const Login = () => {
                 : "Sign up with Google"
             }
           />
-        </div> */}
+        </div>
       </div>
     </form>
   );
